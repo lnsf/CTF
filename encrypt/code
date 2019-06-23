@@ -1,0 +1,37 @@
+long age;
+string age_s;
+
+int main(){
+  string dummy = "ctf4b-kosen-hint{__INPUT_TO_AGE> SHOW_CODE}";
+  string name;
+
+  showStartMessage();
+
+  // Input your name
+
+  while(true){
+    cout << "Type your age > ";
+    cin >> age_s;
+
+    if(age_s[0] == '-'){
+      // Tell you age must be >= 0
+    }
+    else if(age_s == "SHOW_CODE"){
+      // Show this code
+    }
+    else if(!isStrContainsOnlyNum(age_s)){
+      // Tell you age must be contains only 0~9
+    }
+    else{
+      try{age = stol(age_s);}
+      catch (out_of_range& e){
+        // Error too big number
+          continue;
+        }
+      if((int)age == -((localtime(&now)->tm_mday))){
+        showFlag();
+        break;
+      }
+    }
+  }
+}
