@@ -2,123 +2,145 @@
 #include <fstream>
 #include <vector>
 
-#include "../encrypt/xor4file.h"
+#include "../include/xor4file.h"
 
 using namespace std;
 
 void showStartMessage();
-bool isStrContainsOnlyNum(const string&);
+
+bool isStrContainsOnlyNum(const string &);
+
 void showFlag();
+
 void showCode();
-string showAsciiAsStr(const vector<int>&);
 
-long age;
-string age_s;
+string showAsciiAsStr(const vector<int> &);
 
-const vector<int> flagAscii = {99,116,102,52,98,45,107,111,115,101,110,123,121,48,117,
-                               95,103,48,116,95,116,104,49,115,95,102,108,97,103,125};
+bool readInput(string *);
 
-int main(){
-    string dummy = "ctf4b-kosen-hint{__INPUT_TO_AGE> SHOW_CODE}";
+long long num;
+string num_s;
+vector<int> flagAscii;
+
+int main() {
+    flagAscii = {99, 116, 102, 52, 98, 45, 107, 111, 115, 101, 110, 123, 121, 48, 117,
+                 95, 103, 48, 116, 95, 116, 104, 49, 115, 95, 102, 108, 97, 103, 125};
+
+    string dummy = "ctf4b-kosen-hint{__INPUT_TO_NUMBER> SHOW_CODE}";
     string name;
-    time_t now = time(0);
+    time_t now = time(nullptr);
 
     showStartMessage();
 
     cout << "Type your name > ";
-    cin >> name;
+    if (readInput(&name)) return 0;
 
     cout << "Hello " << name << endl;
 
-    while(true){
-        cout << "Type your age > ";
-        cin >> age_s;
+    while (true) {
+        cout << endl << "Number > ";
+        if (readInput(&num_s)) return 0;
 
-        if(age_s[0] == '-'){
-            cout << "Wow! Are you OK?" << endl;
-            cout << "Age starts from 0" << endl;
-        }
-        else if(age_s == "SHOW_CODE"){
-            cout << "OK" << endl << endl;
+        if (num_s[0] == '-') {
+            cout << "Sorry!" << endl;
+            cout << "You can input only > 0" << endl;
+        } else if (num_s == "SHOW_CODE") {
+            cout << "OK" << endl;
 
             showCode();
-        }
-        else if(!isStrContainsOnlyNum(age_s)){
-            cout << "You can input only 0,1,...,9" << endl;
-        }
 
-        else{
-            try{age = stol(age_s);}
-            catch (out_of_range& e){
+            cout << "Output file is ./code" << endl;
+        } else if (!isStrContainsOnlyNum(num_s)) {
+            cout << "You can input only 0,1,...,9" << endl;
+        } else {
+            try { num = stol(num_s); }
+            catch (out_of_range &e) {
                 cout << "Toooooooo big number orz..." << endl;
                 cout << "Try again with others" << endl;
 
                 continue;
             }
-            if((int)age == -((localtime(&now)->tm_mday))){
+            if ((int) num == -((localtime(&now)->tm_mday))) {
                 showFlag();
                 break;
             }
+            else{
+                cout << "Too big number!";
+                cout << "Try again";
+            }
         }
     }
-
     return 0;
 }
 
-void showStartMessage(){
-    cout <<  "  _____ _______ ______ " << endl;
-    cout <<  " / ____|__   __|  ____|" << endl;
-    cout <<  "| |       | |  | |__   " << endl;
-    cout <<  "| |       | |  |  __|  " << endl;
-    cout <<  "| |____   | |  | |     " << endl;
+void showStartMessage() {
+    cout << "  _____ _______ ______ " << endl;
+    cout << " / ____|__   __|  ____|" << endl;
+    cout << "| |       | |  | |__   " << endl;
+    cout << "| |       | |  |  __|  " << endl;
+    cout << "| |____   | |  | |     " << endl;
     cout << " \\_____|  |_|  |_|     " << endl;
 
     cout << "Welcome to my question!" << endl;
 }
 
-void showCode(){
+void showCode() {
     ifstream is;
+    ofstream os;
 
     string key = showAsciiAsStr(flagAscii);
-    try{
+    try {
         is.open("./.hint");
-        cout << doXor2File(is, key) << endl;
-
+        string code = doXor2File(is, key);
         is.close();
+
+        os.open("./code");
+        os << code;
+        os.close();
     }
-    catch (exception& e){
+    catch (exception &e) {
         cerr << e.what() << endl;
 
         is.close();
+        os.close();
     }
 }
 
-bool isStrContainsOnlyNum(const string& s){
-    for(char c : s)
-        if(!isdigit(c)) return false;
+bool isStrContainsOnlyNum(const string &s) {
+    for (char c : s)
+        if (!isdigit(c)) return false;
     return true;
 }
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "hicpp-signed-bitwise"
-void showFlag(){
+
+void showFlag() {
 
 
-    if (!(age & ((long) INT32_MAX + 1))) {
+    if (!(num & ((long) INT32_MAX + 1))) {
         cout << "Missing!" << endl;
     } else {
         cout << showAsciiAsStr(flagAscii) << endl;
     }
 
 }
+
 #pragma clang diagnostic pop
 
-string showAsciiAsStr(const vector<int> &arr){
+string showAsciiAsStr(const vector<int> &arr) {
     string after;
 
-    for(int i : arr)
+    for (int i : arr)
         after.push_back((char) i);
 
     return after;
 }
+
+bool readInput(string *v) {
+    cin >> *v;
+
+    return cin.eof();
+}
+
 

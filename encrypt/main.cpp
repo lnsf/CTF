@@ -1,16 +1,12 @@
-//
-// Created by lnsf on 6/23/19.
-//
-
 #include <iostream>
 #include <fstream>
 
-#include "xor4file.h"
+#include "../include/xor4file.h"
 
 using namespace std;
 
-int main(int argc, char *argv[]){
-    if(argc != 3){
+int main(int argc, char *argv[]) {
+    if (argc != 3) {
         cerr << "Invalid Arguments" << endl;
         return 1;
     }
@@ -25,7 +21,7 @@ int main(int argc, char *argv[]){
 
         is.close();
     }
-    catch (exception& e){
+    catch (exception &e) {
         cerr << e.what() << endl;
 
         is.close();
