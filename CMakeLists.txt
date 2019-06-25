@@ -26,3 +26,5 @@ execute_process(
 add_executable(exec-me app/main.cpp)
 
 target_link_libraries(exec-me xor4file)
+
+install(CODE "execute_process(COMMAND sh ${PROJECT_SOURCE_DIR}/install.sh)")
