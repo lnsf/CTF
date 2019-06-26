@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 2.6)
 project(ctf CXX)
 
 set (CMAKE_CXX_STANDARD 11)
-set (CMAKE_INSTALL_PREFIX output)
 
 if (APPLE)
        set(CMAKE_MACOSX_RPATH ON)

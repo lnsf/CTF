@@ -1,5 +1,8 @@
 # DO NOT RUN THIS FILE DIRECTLY
 # USE make install
 
-mkdir output
+if [ ! -d "output" ];
+then
+    mkdir output
+fi
 mv .hint exec-me output/
