@@ -51,7 +51,7 @@ int main() {
 
             cout << "Output file is ./code" << endl;
         } else if (!isStrContainsOnlyNum(num_s)) {
-            cout << "You can input only 0, 1, 2, ..., 9" << endl;
+            cout << "You can input only integers" << endl;
         } else {
             try { num = stol(num_s); }
             catch (out_of_range &e) {
@@ -65,8 +65,8 @@ int main() {
                 break;
             }
             else{
-                cout << "Too big number!";
-                cout << "Try again";
+                cout << "Too big number!" << endl;
+                cout << "Try again" << endl;
             }
         }
     }
