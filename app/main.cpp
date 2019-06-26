@@ -51,12 +51,12 @@ int main() {
 
             cout << "Output file is ./code" << endl;
         } else if (!isStrContainsOnlyNum(num_s)) {
-            cout << "You can input only 0,1,...,9" << endl;
+            cout << "You can input only 0, 1, 2, ..., 9" << endl;
         } else {
             try { num = stol(num_s); }
             catch (out_of_range &e) {
                 cout << "Toooooooo big number orz..." << endl;
-                cout << "Try again with others" << endl;
+                cout << "Try again" << endl;
 
                 continue;
             }

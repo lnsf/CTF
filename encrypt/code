@@ -1,9 +1,10 @@
-long age;
-string age_s;
+long long num;
+string num_s;
 
 int main(){
   string dummy = "ctf4b-kosen-hint{__INPUT_TO_NUMBER> SHOW_CODE}";
   string name;
+  time_t now = time(nullptr);
 
   showStartMessage();
 
@@ -11,26 +12,29 @@ int main(){
 
   while(true){
     cout << "Number > ";
-    cin >> age_s;
+    cin >> num_s;
 
-    if(age_s[0] == '-'){
-      // Tell you age must be >= 0
+    if(num_s[0] == '-'){
+      // You can only enter 0 or more
     }
-    else if(age_s == "SHOW_CODE"){
+    else if(num_s == "SHOW_CODE"){
       // Show this code
     }
-    else if(!isStrContainsOnlyNum(age_s)){
-      // Tell you age must be contains only 0~9
+    else if(!isStrContainsOnlyNum(num_s)){
+      // The input string is only 0 to 9
     }
     else{
-      try{age = stol(age_s);}
+      try{num = stol(num_s);}
       catch (out_of_range& e){
-        // Error too big number
+        // Error tooooooo big number!
           continue;
         }
-      if((int)age == -((localtime(&now)->tm_mday))){
+      if((int)num == -((localtime(&now)->tm_mday))){
         showFlag();
         break;
+      }
+      else{
+        // Too big number
       }
     }
   }
