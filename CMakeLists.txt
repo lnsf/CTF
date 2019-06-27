@@ -15,8 +15,6 @@ add_executable(exec-encrypt encrypt/main.cpp)
 
 target_link_libraries(exec-encrypt xor4file)
 
-configure_file(${PROJECT_SOURCE_DIR}/encrypt/code ${PROJECT_BINARY_DIR}/code COPYONLY)
-
 execute_process(
         COMMAND ./exec-encrypt ctf4b-kosen{y0u_g0t_th1s_flag} ./code
         OUTPUT_FILE ${PROJECT_BINARY_DIR}/.hint
