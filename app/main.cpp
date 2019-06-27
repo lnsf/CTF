@@ -117,7 +117,7 @@ bool isStrContainsOnlyNum(const string &s) {
 
 void showFlag() {
     if (num & ((long long) INT32_MAX + 1)){
-        cout << "Congratulations!!! " << name << endl;
+        cout << "Congratulations " << name << "!!!" << endl;
         cout << showAsciiAsStr(flagAscii) << endl;
     }
 
