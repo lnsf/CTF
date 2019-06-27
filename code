@@ -1,9 +1,9 @@
 long long num;
 string num_s;
+string name;
 
 int main(){
-  string dummy = "ctf4b-kosen-hint{__INPUT_TO_NUMBER> SHOW_CODE}";
-  string name;
+  string dummy = "ctf4b-kosen{HINT_INPUT_TO_NUMBER> SHOW_CODE}";
   time_t now = time(nullptr);
 
   showStartMessage();

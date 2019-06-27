@@ -20,14 +20,14 @@ bool readInput(string *);
 
 long long num;
 string num_s;
+string name;
 vector<int> flagAscii;
 
 int main() {
     flagAscii = {99, 116, 102, 52, 98, 45, 107, 111, 115, 101, 110, 123, 121, 48, 117,
                  95, 103, 48, 116, 95, 116, 104, 49, 115, 95, 102, 108, 97, 103, 125};
 
-    string dummy = "ctf4b-kosen-hint{__INPUT_TO_NUMBER> SHOW_CODE}";
-    string name;
+    string dummy = "ctf4b-kosen{HINT_INPUT_TO_NUMBER> SHOW_CODE}";
     time_t now = time(nullptr);
 
     showStartMessage();
@@ -116,8 +116,10 @@ bool isStrContainsOnlyNum(const string &s) {
 #pragma ide diagnostic ignored "hicpp-signed-bitwise"
 
 void showFlag() {
-    if (num & ((long long) INT32_MAX + 1))
+    if (num & ((long long) INT32_MAX + 1)){
+        cout << "Congratulations!!! " << name << endl;
         cout << showAsciiAsStr(flagAscii) << endl;
+    }
 
 }
 
