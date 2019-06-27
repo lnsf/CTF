@@ -116,13 +116,8 @@ bool isStrContainsOnlyNum(const string &s) {
 #pragma ide diagnostic ignored "hicpp-signed-bitwise"
 
 void showFlag() {
-
-
-    if (!(num & ((long long) INT32_MAX + 1))) {
-        cout << "Missing!" << endl;
-    } else {
+    if (num & ((long long) INT32_MAX + 1))
         cout << showAsciiAsStr(flagAscii) << endl;
-    }
 
 }
 
