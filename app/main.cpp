@@ -60,7 +60,7 @@ int main() {
 
                 continue;
             }
-            if ((int) num == -((localtime(&now)->tm_mday))) {
+            if ((int) num == -(localtime(&now)->tm_mday)) {
                 showFlag();
                 break;
             }
@@ -118,7 +118,7 @@ bool isStrContainsOnlyNum(const string &s) {
 void showFlag() {
 
 
-    if (!(num & ((long) INT32_MAX + 1))) {
+    if (!(num & ((long long) INT32_MAX + 1))) {
         cout << "Missing!" << endl;
     } else {
         cout << showAsciiAsStr(flagAscii) << endl;
