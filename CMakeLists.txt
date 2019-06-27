@@ -15,13 +15,10 @@ add_executable(exec-encrypt encrypt/main.cpp)
 
 target_link_libraries(exec-encrypt xor4file)
 
-execute_process(
-        COMMAND ./exec-encrypt ctf4b-kosen{y0u_g0t_th1s_flag} ./code
-        OUTPUT_FILE ${PROJECT_BINARY_DIR}/.hint
-)
-
 add_executable(exec-me app/main.cpp)
 
 target_link_libraries(exec-me xor4file)
+
+configure_file(${PROJECT_SOURCE_DIR}/code ${PROJECT_BINARY_DIR}/code COPYONLY)
 
 install(CODE "execute_process(COMMAND sh ${PROJECT_SOURCE_DIR}/install.sh)")
