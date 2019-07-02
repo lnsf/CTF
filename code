@@ -3,7 +3,7 @@ string num_s;
 string name;
 
 int main(){
-  string dummy = "ctf4b-kosen{HINT_INPUT_TO_NUMBER> SHOW_CODE}";
+  string dummy = "flag{HINT_INPUT_TO_NUMBER> SHOW_CODE}";
   time_t now = time(nullptr);
 
   showStartMessage();

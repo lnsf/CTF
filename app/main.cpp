@@ -24,10 +24,10 @@ string name;
 vector<int> flagAscii;
 
 int main() {
-    flagAscii = {99, 116, 102, 52, 98, 45, 107, 111, 115, 101, 110, 123, 121, 48, 117,
+    flagAscii = {102, 108, 97, 103, 123, 121, 48, 117,
                  95, 103, 48, 116, 95, 116, 104, 49, 115, 95, 102, 108, 97, 103, 125};
 
-    string dummy = "ctf4b-kosen{HINT_INPUT_TO_NUMBER> SHOW_CODE}";
+    string dummy = "flag{HINT_INPUT_TO_NUMBER> SHOW_CODE}";
     time_t now = time(nullptr);
 
     showStartMessage();
