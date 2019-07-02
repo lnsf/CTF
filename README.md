@@ -19,3 +19,6 @@ make install
 ```
 
 Files are in {source dir}/build/output/
+
+## Flag format
+flag{...}
